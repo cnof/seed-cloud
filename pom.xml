@@ -13,6 +13,7 @@
         <module>seed-scheduler</module>
         <module>seed-web</module>
         <module>seed-common</module>
+        <module>seed-admin</module>
     </modules>
 
     <properties>
@@ -35,6 +36,7 @@
         <fastjson.version>2.0.45</fastjson.version>
         <easyexcel.version>3.3.3</easyexcel.version>
         <sa-token.version>1.37.0</sa-token.version>
+        <lombok.version>1.18.28</lombok.version>
     </properties>
 
     <dependencyManagement>
@@ -90,6 +92,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
                 <version>${spring-boot.version}</version>
+            </dependency>
+
+            <!-- 编译器 工具类：用于自动生成 getter/setter等方法 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
 
             <!-- 单独引入jSqlParser防止pageHelper与mybatisPlus引入版本不一致造成冲突-->
@@ -171,6 +180,12 @@
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-reactor-spring-boot-starter</artifactId>
                 <version>${sa-token.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-common-core</artifactId>
+                <version>${version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
