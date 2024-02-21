@@ -16,6 +16,9 @@
         <module>seed-common-log</module>
         <module>seed-common-swagger</module>
         <module>seed-common-redis</module>
+        <module>seed-common-app</module>
+        <module>seed-common-web</module>
+        <module>seed-common-ds</module>
     </modules>
 
     <properties>

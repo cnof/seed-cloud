@@ -205,6 +205,42 @@
 
             <dependency>
                 <groupId>com.misssyc</groupId>
+                <artifactId>seed-common-app</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-common-swagger</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-common-log</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-common-redis</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-common-web</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-common-ds</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
                 <artifactId>seed-admin-api</artifactId>
                 <version>${version}</version>
             </dependency>
