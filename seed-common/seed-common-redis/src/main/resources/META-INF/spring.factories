@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.misssyc.seed.common.redis.config.RedisConfig,\
+  com.misssyc.seed.common.redis.config.CacheProperties
+
+  

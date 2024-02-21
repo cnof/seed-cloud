@@ -5,23 +5,29 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.misssyc</groupId>
-        <artifactId>seed</artifactId>
+        <artifactId>seed-common</artifactId>
         <version>${version}</version>
     </parent>
 
-    <artifactId>seed-common</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>seed-common-core</module>
-        <module>seed-common-log</module>
-        <module>seed-common-swagger</module>
-        <module>seed-common-redis</module>
-    </modules>
+    <artifactId>seed-common-redis</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <!-- SpringBoot Boot Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.misssyc</groupId>
+            <artifactId>seed-common-core</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
