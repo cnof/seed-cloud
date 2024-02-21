@@ -31,3 +31,6 @@
 1. 基础框架搭建
 2. 基础权限功能
 3. 基础系统管理功能
+
+### 参考
+1. [摸鱼低代码平台后端](https://github.com/mfish-qf/mfish-nocode)
