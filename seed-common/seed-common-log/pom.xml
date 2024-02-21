@@ -5,21 +5,28 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.misssyc</groupId>
-        <artifactId>seed</artifactId>
-        <version>${version}</version>
+        <artifactId>seed-common</artifactId>
+        <version>1.0.0</version>
     </parent>
 
-    <artifactId>seed-common</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>seed-common-core</module>
-        <module>seed-common-log</module>
-    </modules>
+    <artifactId>seed-common-log</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.misssyc</groupId>
+            <artifactId>seed-common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.misssyc</groupId>
+            <artifactId>seed-admin-api</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

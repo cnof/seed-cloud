@@ -14,6 +14,7 @@
         <module>seed-web</module>
         <module>seed-common</module>
         <module>seed-admin</module>
+        <module>seed-api</module>
     </modules>
 
     <properties>
@@ -37,6 +38,7 @@
         <easyexcel.version>3.3.3</easyexcel.version>
         <sa-token.version>1.37.0</sa-token.version>
         <lombok.version>1.18.28</lombok.version>
+        <hutool.version>5.8.25</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -182,9 +184,28 @@
                 <version>${sa-token.version}</version>
             </dependency>
 
+            <!-- 第三方工具类   -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.misssyc</groupId>
                 <artifactId>seed-common-core</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-admin-api</artifactId>
                 <version>${version}</version>
             </dependency>
         </dependencies>

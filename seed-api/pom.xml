@@ -6,14 +6,13 @@
     <parent>
         <groupId>com.misssyc</groupId>
         <artifactId>seed</artifactId>
-        <version>${version}</version>
+        <version>1.0.0</version>
     </parent>
 
-    <artifactId>seed-common</artifactId>
+    <artifactId>seed-api</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>seed-common-core</module>
-        <module>seed-common-log</module>
+        <module>seed-admin-api</module>
     </modules>
 
     <properties>
