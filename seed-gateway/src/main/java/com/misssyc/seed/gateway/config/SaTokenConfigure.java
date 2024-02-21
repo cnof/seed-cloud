@@ -24,7 +24,12 @@ public class SaTokenConfigure {
                 // 指定[认证函数]: 每次请求执行
                 .setAuth(obj -> {
                     System.out.println("---------- sa全局认证");
-                    SaRouter.match("/hello", StpUtil::checkLogin);
+                    SaRouter.match("/**")
+                            .notMatch("/api-gateway/hello")
+                            .check(r -> {
+                                StpUtil.checkLogin();
+                            })
+                    ;
                 })
                 // 指定[异常处理函数]：每次[认证函数]发生异常时执行此函数
                 .setError(e -> {
