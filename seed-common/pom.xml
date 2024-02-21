@@ -14,6 +14,7 @@
     <modules>
         <module>seed-common-core</module>
         <module>seed-common-log</module>
+        <module>seed-common-swagger</module>
     </modules>
 
     <properties>

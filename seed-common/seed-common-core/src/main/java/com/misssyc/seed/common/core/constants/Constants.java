@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
  **/
 public class Constants {
 
+    public static final String VERSION = "V1.0.0";
+
     /**
      * 逗号
      */
@@ -42,4 +44,14 @@ public class Constants {
      * 验证码有效期（分钟）
      */
     public static final long CAPTCHA_EXPIRE = 5;
+
+    /**
+     * head令牌自定义标识
+     */
+    public static final String AUTHENTICATION = "Authorization";
+
+    /**
+     * 令牌来源头
+     */
+    public static final String HEADER = "header";
 }

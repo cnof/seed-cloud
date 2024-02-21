@@ -9,7 +9,7 @@
         <version>${version}</version>
     </parent>
 
-    <artifactId>seed-common-log</artifactId>
+    <artifactId>seed-common-swagger</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -18,14 +18,29 @@
     </properties>
 
     <dependencies>
+        <!-- Swagger -->
         <dependency>
-            <groupId>com.misssyc</groupId>
-            <artifactId>seed-common-core</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${swagger.fox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator-autoconfigure</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.misssyc</groupId>
-            <artifactId>seed-admin-api</artifactId>
+            <artifactId>seed-common-core</artifactId>
         </dependency>
     </dependencies>
 
