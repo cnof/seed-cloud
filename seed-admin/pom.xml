@@ -19,13 +19,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.misssyc</groupId>
-            <artifactId>seed-common-core</artifactId>
+            <artifactId>seed-common-web</artifactId>
         </dependency>
     </dependencies>
 

@@ -4,6 +4,7 @@ import cn.dev33.satoken.reactor.filter.SaReactorFilter;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
+import com.misssyc.seed.common.core.web.ResultHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,11 +26,11 @@ public class SaTokenConfigure {
                 .setAuth(obj -> {
                     System.out.println("---------- sa全局认证");
                     SaRouter.match("/**")
-                            .notMatch("/api-gateway/hello")
+                            .notMatch("/api-admin/**")
+                            .notMatch("/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs")
                             .check(r -> {
                                 StpUtil.checkLogin();
-                            })
-                    ;
+                            });
                 })
                 // 指定[异常处理函数]：每次[认证函数]发生异常时执行此函数
                 .setError(e -> {

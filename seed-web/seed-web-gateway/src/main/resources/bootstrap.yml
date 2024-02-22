@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: api-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      routes:
+        # 系统管理中心
+        - id: api-admin
+          uri: lb://api-admin
+          predicates:
+            - Path=/api-admin/**
+          filters:
+            - StripPrefix=1
+  redis:
+    database: 0
+    port: 6379
+    host: 127.0.0.1
+    password: 123456

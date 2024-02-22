@@ -32,6 +32,7 @@
         <swagger.core.version>1.6.12</swagger.core.version>
         <mybatis-plus.version>3.5.5</mybatis-plus.version>
         <pagehelper.boot.version>2.1.0</pagehelper.boot.version>
+        <mysql.version>8.0.33</mysql.version>
         <jsqlparser.version>4.8</jsqlparser.version>
         <druid.version>1.2.21</druid.version>
         <fastjson.version>2.0.45</fastjson.version>
@@ -108,6 +109,12 @@
                 <groupId>com.github.jsqlparser</groupId>
                 <artifactId>jsqlparser</artifactId>
                 <version>${jsqlparser.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
             </dependency>
 
             <!-- pagehelper 分页插件 -->
@@ -242,6 +249,18 @@
             <dependency>
                 <groupId>com.misssyc</groupId>
                 <artifactId>seed-admin-api</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-gateway</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.misssyc</groupId>
+                <artifactId>seed-admin</artifactId>
                 <version>${version}</version>
             </dependency>
         </dependencies>
