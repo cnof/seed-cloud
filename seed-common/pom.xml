@@ -19,6 +19,7 @@
         <module>seed-common-app</module>
         <module>seed-common-web</module>
         <module>seed-common-ds</module>
+        <module>seed-common-oauth</module>
     </modules>
 
     <properties>
