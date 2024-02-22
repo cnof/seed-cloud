@@ -26,8 +26,8 @@ public class SaTokenConfigure {
                 .setAuth(obj -> {
                     System.out.println("---------- sa全局认证");
                     SaRouter.match("/**")
-                            .notMatch("/api-admin/**")
-                            .notMatch("/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs")
+                            .notMatch("/api-admin/login")
+                            .notMatch("/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs", "/api-admin/v2/api-docs")
                             .check(r -> {
                                 StpUtil.checkLogin();
                             });
