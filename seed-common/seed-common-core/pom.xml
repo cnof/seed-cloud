@@ -51,6 +51,12 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!-- Apache Lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
         <!-- Alibaba Fastjson -->
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
