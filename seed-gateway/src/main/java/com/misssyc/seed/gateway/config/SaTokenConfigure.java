@@ -5,6 +5,7 @@ import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 
 /**
  * @author 33992
@@ -22,13 +23,15 @@ public class SaTokenConfigure {
                 .addExclude("/favicon.ico")
                 // 指定[认证函数]: 每次请求执行
                 .setAuth(obj -> {
-                    System.out.println("---------- sa全局认证");
-                    SaRouter.match("/**")
-                            .notMatch("/api-admin/login")
-                            .notMatch("/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs", "/api-admin/v2/api-docs")
-                            .check(r -> {
-                                StpUtil.checkLogin();
-                            });
+                    // 放行登录请求
+                    SaRouter.notMatch("/api-admin/login");
+                    // 放行 swagger 相关请求
+                    SaRouter.notMatch("/swagger-ui/**");
+                    SaRouter.notMatch("/swagger-resources/**");
+                    SaRouter.notMatch("/v2/api-docs");
+                    SaRouter.notMatch("/api-admin/v2/api-docs");
+
+                    SaRouter.match("/api-admin/users").matchMethod(HttpMethod.GET.name()).check(r -> StpUtil.checkPermission("admin:user:query"));
                 });
     }
 }
