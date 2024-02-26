@@ -35,6 +35,11 @@
             <groupId>com.misssyc</groupId>
             <artifactId>seed-common-ds</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.misssyc</groupId>
+            <artifactId>seed-common-oauth</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

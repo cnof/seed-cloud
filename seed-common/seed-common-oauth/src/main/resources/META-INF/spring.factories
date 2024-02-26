@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.misssyc.seed.common.oauth.config.SaTokenConfigure,\
+  com.misssyc.seed.common.oauth.advice.OauthExceptionHandlerAdvice

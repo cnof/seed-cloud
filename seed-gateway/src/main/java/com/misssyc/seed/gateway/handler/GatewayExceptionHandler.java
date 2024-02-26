@@ -1,8 +1,5 @@
 package com.misssyc.seed.gateway.handler;
 
-import cn.dev33.satoken.exception.NotLoginException;
-import cn.dev33.satoken.exception.NotPermissionException;
-import cn.dev33.satoken.exception.SaTokenException;
 import com.misssyc.seed.common.core.constants.Constants;
 import com.misssyc.seed.common.core.utils.ServletUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -37,16 +34,6 @@ public class GatewayExceptionHandler implements ErrorWebExceptionHandler {
         } else if (ex instanceof ResponseStatusException) {
             ResponseStatusException responseStatusException = (ResponseStatusException) ex;
             msg = responseStatusException.getMessage();
-        } else if (ex instanceof SaTokenException) {
-            code = 401;
-            SaTokenException sa = (SaTokenException) ex;
-            if (sa.getCause() instanceof NotLoginException) {
-                msg = "未登录";
-            } else if (sa.getCause() instanceof NotPermissionException) {
-                msg = "未授权";
-            } else {
-                msg = "令牌错误";
-            }
         } else {
             msg = "错误:内部服务器错误";
         }

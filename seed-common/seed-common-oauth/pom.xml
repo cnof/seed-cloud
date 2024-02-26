@@ -35,6 +35,11 @@
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-jwt</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.misssyc</groupId>
+            <artifactId>seed-common-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
