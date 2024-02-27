@@ -15,6 +15,7 @@
         <module>seed-common</module>
         <module>seed-admin</module>
         <module>seed-api</module>
+        <module>seed-generator</module>
     </modules>
 
     <properties>
@@ -40,6 +41,7 @@
         <sa-token.version>1.37.0</sa-token.version>
         <lombok.version>1.18.28</lombok.version>
         <hutool.version>5.8.25</hutool.version>
+        <velocity.version>2.3</velocity.version>
     </properties>
 
     <dependencyManagement>
@@ -205,6 +207,13 @@
                 <version>${sa-token.version}</version>
             </dependency>
 
+            <!--        代码生成的依赖   -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+
             <!-- 第三方工具类   -->
             <dependency>
                 <groupId>cn.hutool</groupId>
@@ -271,19 +280,37 @@
                 <artifactId>seed-admin-api</artifactId>
                 <version>${version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>com.misssyc</groupId>
-                <artifactId>seed-gateway</artifactId>
-                <version>${version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.misssyc</groupId>
-                <artifactId>seed-admin</artifactId>
-                <version>${version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <!-- 资源文件拷贝插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- java编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgument>-parameters</compilerArgument>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.4</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

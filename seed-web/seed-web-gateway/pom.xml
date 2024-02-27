@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.misssyc</groupId>
         <artifactId>seed-web</artifactId>
-        <version>1.0.0</version>
+        <version>${version}</version>
     </parent>
 
     <artifactId>seed-web-gateway</artifactId>
@@ -21,6 +21,7 @@
         <dependency>
             <groupId>com.misssyc</groupId>
             <artifactId>seed-gateway</artifactId>
+            <version>${version}</version>
         </dependency>
     </dependencies>
 

@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.misssyc</groupId>
-        <artifactId>seed-web</artifactId>
+        <artifactId>seed</artifactId>
         <version>${version}</version>
     </parent>
 
-    <artifactId>seed-web-admin</artifactId>
+    <artifactId>seed-generator</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -20,8 +20,24 @@
     <dependencies>
         <dependency>
             <groupId>com.misssyc</groupId>
-            <artifactId>seed-admin</artifactId>
-            <version>${version}</version>
+            <artifactId>seed-common-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.misssyc</groupId>
+            <artifactId>seed-common-oauth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+
+        <!--        代码生成的依赖   -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
         </dependency>
     </dependencies>
 

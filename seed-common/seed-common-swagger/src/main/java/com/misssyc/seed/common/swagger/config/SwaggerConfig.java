@@ -1,7 +1,6 @@
 package com.misssyc.seed.common.swagger.config;
 
 import com.misssyc.seed.common.core.constants.Constants;
-import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.Api;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -123,7 +122,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public static BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {
         return new BeanPostProcessor() {
             @Override
-            public Object postProcessAfterInitialization(@NotNull Object bean, @NotNull String beanName) throws BeansException {
+            public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
                 if (bean instanceof WebMvcRequestHandlerProvider || bean instanceof WebFluxRequestHandlerProvider) {
                     List<RequestMappingInfoHandlerMapping> list;
                     try {

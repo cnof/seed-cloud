@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+    <id>single</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}/config/</directory>
+            <outputDirectory>config</outputDirectory>
+            <includes>
+                <include>logback.xml</include>
+                <include>application-${environment}.yml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/public/</directory>
+            <outputDirectory>public</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/lib/</directory>
+            <outputDirectory>lib</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/</directory>
+            <includes>
+                <!--<include>${pom.artifactId}-${pom.version}.jar</include>-->
+                <include>*.jar</include>
+            </includes>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>
