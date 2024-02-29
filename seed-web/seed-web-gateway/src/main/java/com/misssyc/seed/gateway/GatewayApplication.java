@@ -1,6 +1,5 @@
 package com.misssyc.seed.gateway;
 
-import com.misssyc.seed.common.core.annotation.AutoFeignClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2024/2/5
  **/
 @SpringBootApplication
-@AutoFeignClients
 public class GatewayApplication {
 
     public static void main(String[] args) {
