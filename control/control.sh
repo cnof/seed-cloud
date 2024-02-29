@@ -6,7 +6,7 @@ cd "$WORKSPACE" || exit
 mkdir -p var
 
 module="${project.artifactId}"
-app=ep-s-"$module"-${version}.jar
+app="$module"-${version}.jar
 # 环境
 env=-Dspring.profiles.active="${environment}"
 
