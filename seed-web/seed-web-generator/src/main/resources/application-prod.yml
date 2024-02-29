@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: api-generator
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+  datasource:
+    druid: # 数据库相关配置，根据实际情况修改
+      url: jdbc:mysql://127.0.0.1:3306/seed?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+      username: root
+      password: 123456
+      driverClassName: com.mysql.cj.jdbc.Driver
+      filters: stat
+      maxActive: 50
+      initialSize: 10
+      maxWait: 600000
+      minIdle: 10
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+  redis:
+    database: 0
+    port: 6379
+    host: 127.0.0.1
+    password: 123456
+sa-token:
+  # token 名称（同时也是 cookie 名称）
+  token-name: Authorization
+  # jwt秘钥
+  jwt-secret-key: FWf9gEQtjd2JPeI0
