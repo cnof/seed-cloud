@@ -12,7 +12,7 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 @Configuration

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 异步保存日志
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 @Slf4j

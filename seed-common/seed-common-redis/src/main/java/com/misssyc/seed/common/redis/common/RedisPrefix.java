@@ -1,7 +1,7 @@
 package com.misssyc.seed.common.redis.common;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 public class RedisPrefix {

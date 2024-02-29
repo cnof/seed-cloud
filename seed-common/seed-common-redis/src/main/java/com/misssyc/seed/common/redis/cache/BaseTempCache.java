@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 public abstract class BaseTempCache<T> {

@@ -3,7 +3,7 @@ package com.misssyc.seed.admin.po;
 import lombok.Data;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/22
  **/
 @Data

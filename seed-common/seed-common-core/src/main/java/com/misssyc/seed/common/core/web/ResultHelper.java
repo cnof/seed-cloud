@@ -5,7 +5,7 @@ import com.misssyc.seed.common.core.constants.Constants;
 import static com.misssyc.seed.common.core.web.Result.buildResult;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 public class ResultHelper {

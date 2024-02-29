@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 /**
  * swagger 配置类
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 @Configuration

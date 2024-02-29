@@ -7,7 +7,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 @Configuration

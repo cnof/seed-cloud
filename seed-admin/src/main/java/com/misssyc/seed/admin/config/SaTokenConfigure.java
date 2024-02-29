@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2023/7/10
  **/
 @Configuration

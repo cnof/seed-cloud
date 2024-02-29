@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 @ApiModel("通用泛型结果返回")

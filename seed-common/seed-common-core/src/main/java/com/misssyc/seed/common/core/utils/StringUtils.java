@@ -4,7 +4,7 @@ import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * 字符串工具类
- * @author 33992
+ * @author 李生平
  * @since 2024/2/21
  **/
 public class StringUtils {

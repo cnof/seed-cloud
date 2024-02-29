@@ -4,7 +4,7 @@ import com.misssyc.seed.common.web.annotation.AutoWeb;
 import org.springframework.boot.SpringApplication;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/22
  **/
 @AutoWeb

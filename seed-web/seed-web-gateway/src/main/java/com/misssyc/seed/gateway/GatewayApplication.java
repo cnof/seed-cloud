@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/5
  **/
 @SpringBootApplication

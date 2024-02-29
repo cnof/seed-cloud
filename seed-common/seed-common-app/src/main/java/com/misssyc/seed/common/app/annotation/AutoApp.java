@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author 33992
+ * @author 李生平
  * @since 2024/2/22
  **/
 @Target(ElementType.TYPE)
