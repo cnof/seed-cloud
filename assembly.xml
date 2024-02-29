@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <assembly>
-    <id>single</id>
+    <id>bin</id>
     <formats>
         <format>zip</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
+        <!--  打包启停脚本    -->
         <fileSet>
-            <directory>${project.build.directory}/config/</directory>
-            <outputDirectory>config</outputDirectory>
+            <directory>${project.parent.parent.basedir}/control</directory>
+            <!-- 打包时替换变量 -->
+            <filtered>true</filtered>
+            <outputDirectory>./</outputDirectory>
             <includes>
-                <include>logback.xml</include>
+                <include>*</include>
+            </includes>
+            <fileMode>0777</fileMode> <!-- 设置文件 UNIX 属性 -->
+        </fileSet>
+        <!-- 打包配置文件       -->
+        <fileSet>
+            <directory>${project.basedir}/src/main/resources</directory>
+            <outputDirectory>./</outputDirectory>
+            <includes>
                 <include>application-${environment}.yml</include>
             </includes>
         </fileSet>
+        <!-- 把项目自己编译出来的jar文件，打包进zip文件的根目录 -->
         <fileSet>
-            <directory>${project.build.directory}/public/</directory>
-            <outputDirectory>public</outputDirectory>
-        </fileSet>
-        <fileSet>
-            <directory>${project.build.directory}/lib/</directory>
-            <outputDirectory>lib</outputDirectory>
-        </fileSet>
-        <fileSet>
-            <directory>${project.build.directory}/</directory>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>./</outputDirectory>
             <includes>
-                <!--<include>${pom.artifactId}-${pom.version}.jar</include>-->
                 <include>*.jar</include>
             </includes>
-            <outputDirectory>/</outputDirectory>
         </fileSet>
     </fileSets>
 </assembly>
