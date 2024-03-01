@@ -56,8 +56,8 @@ public class GeneratorController {
                         .pathInfo(Collections.singletonMap(OutputFile.xml, "E:\\public\\public_project\\files\\generator"))
                 )
                 .strategyConfig(builder -> builder
-                        .addInclude("auth_user")
-                        .addTablePrefix("auth_")
+                        .addInclude("generator_gen_table", "generator_gen_table_column")
+                        .addTablePrefix("generator_")
                 )
                 .templateEngine(new VelocityTemplateEngine())
 
