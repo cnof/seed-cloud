@@ -1,13 +1,12 @@
-package com.misssyc.seed.generator.po;
+package com.misssyc.seed.generator.pojo.vo;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -20,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 @Data
 @TableName("generator_gen_table_column")
 @ApiModel(value = "GenTableColumn对象", description = "代码生成业务表字段")
-public class GenTableColumn implements Serializable {
+public class GenTableColumnVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -94,23 +93,4 @@ public class GenTableColumn implements Serializable {
     @ApiModelProperty("更新时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
-
-    public String getCapJavaField()
-    {
-        return StringUtils.capitalize(javaField);
-    }
-
-    public boolean isSuperColumn()
-    {
-        return isSuperColumn(this.javaField);
-    }
-
-    public static boolean isSuperColumn(String javaField)
-    {
-        return StringUtils.equalsAnyIgnoreCase(javaField,
-                // BaseEntity
-                "createBy", "createTime", "updateBy", "updateTime", "remark",
-                // TreeEntity
-                "parentName", "parentId", "orderNum", "ancestors");
-    }
 }

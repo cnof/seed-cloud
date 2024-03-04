@@ -1,0 +1,13 @@
+#* @implicitly included *#
+#* @vtlvariable name="businessName" type="java.lang.String" *#
+#* @vtlvariable name="pkColumn" type="com.misssyc.seed.generator.po.GenTableColumn" *#
+#* @vtlvariable name="className" type="java.lang.String" *#
+#* @vtlvariable name="datetime" type="java.lang.String" *#
+#* @vtlvariable name="functionName" type="java.lang.String" *#
+#* @vtlvariable name="author" type="java.lang.String" *#
+#* @vtlvariable name="importList" type="java.util.HashSet" *#
+#* @vtlvariable name="columns" type="java.util.List" *#
+#* @vtlvariable name="column" type="com.misssyc.seed.generator.po.GenTableColumn" *#
+#* @vtlvariable name="tableName" type="java.lang.String" *#
+#* @vtlvariable name="ClassName" type="java.lang.String" *#
+#* @vtlvariable name="packageName" type="java.lang.String" *#

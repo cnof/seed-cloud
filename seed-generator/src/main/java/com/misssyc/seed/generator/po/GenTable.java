@@ -1,6 +1,7 @@
 package com.misssyc.seed.generator.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
@@ -87,4 +88,8 @@ public class GenTable implements Serializable {
 
     @ApiModelProperty("备注")
     private String remark;
+
+    /** 主键信息 */
+    @TableField(exist = false)
+    private GenTableColumn pkColumn;
 }

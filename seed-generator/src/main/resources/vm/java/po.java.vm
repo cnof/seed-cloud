@@ -1,0 +1,35 @@
+package ${packageName}.po;
+
+#foreach ($import in $importList)
+import ${import};
+#end
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.Data;
+
+/**
+ *
+ * @author ${author}
+ * @since  ${datetime}
+ */
+@Data
+@TableName("${tableName}")
+public class ${ClassName} {
+
+#foreach ($column in $columns)
+    /**
+     * $column.columnComment
+     */
+    #if($column.isPk == '1')
+    @TableId
+    #end
+    #if($column.javaField == 'createBy' || $column.javaField == 'createTime')
+    @TableField(fill = FieldFill.INSERT)
+    #end
+    #if($column.javaField == 'updateBy' || $column.javaField == 'updateTime')
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    #end
+    private $column.javaType $column.javaField;
+#end
+}

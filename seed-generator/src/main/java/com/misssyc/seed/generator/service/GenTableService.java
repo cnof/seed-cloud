@@ -31,4 +31,6 @@ public interface GenTableService extends IService<GenTable> {
      * @param param
      */
     void importGenTable(List<GenTable> tableList, GenTableAddDTO param);
+
+    void generateCode(Long tableId);
 }

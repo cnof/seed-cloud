@@ -1,0 +1,28 @@
+package ${packageName}.mapstruct;
+
+import ${packageName}.domain.${ClassName};
+import ${packageName}.pojo.vo.${ClassName}VO;
+import ${packageName}.pojo.vo.${ClassName}QueryVO;
+import ${packageName}.pojo.vo.${ClassName}AddOrUpdateVO;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+import java.util.List;
+
+/**
+ * ${ClassName}Convert 数组类型转换处理
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Mapper
+public interface ${ClassName}Convert {
+
+    ${ClassName}Convert INSTANCE = Mappers.getMapper(${ClassName}Convert.class);
+
+    ${ClassName}VO convert(${ClassName} po);
+
+    ${ClassName} convert(${ClassName}AddOrUpdateVO vo);
+
+    List<${ClassName}VO> convert(List<${ClassName}> pos);
+}

@@ -37,4 +37,10 @@ public class GeneratorController {
         genTableService.importGenTable(tableList, param);
         return ResultHelper.ok();
     }
+
+    @PostMapping("/generate-code")
+    public Result<Void> generateCode(Long tableId) {
+        genTableService.generateCode(tableId);
+        return ResultHelper.ok();
+    }
 }

@@ -1,0 +1,22 @@
+package ${packageName}.pojo.vo;
+
+#foreach ($import in $importList)
+import ${import};
+#end
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ *
+ * @author ${author}
+ * @since  ${datetime}
+ */
+@Data
+public class ${ClassName}QueryVO {
+#foreach ($column in $columns)
+#if($column.isQuery == '1')
+    @ApiModelProperty("$column.columnComment")
+    private $column.javaType $column.javaField;
+#end
+#end
+}

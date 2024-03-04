@@ -1,0 +1,102 @@
+package ${packageName}.service.impl;
+
+import org.springframework.stereotype.Service;
+import ${packageName}.mapper.${ClassName}Mapper;
+import ${packageName}.domain.${ClassName};
+import ${packageName}.pojo.vo.${ClassName}VO;
+import ${packageName}.pojo.vo.${ClassName}QueryVO;
+import ${packageName}.pojo.vo.${ClassName}AddOrUpdateVO;
+import ${packageName}.service.${ClassName}Service;
+import ${packageName}.mapstruct.${ClassName}Convert;
+import com.misssyc.seed.common.core.vo.PageVO;
+import com.misssyc.seed.common.core.vo.PageQueryVO;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+/**
+ * ${functionName}Service业务层处理
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${ClassName}>
+        implements ${ClassName}Service {
+
+    /**
+     * 查询${functionName}
+     *
+     * @param ${pkColumn.javaField} ${functionName}主键
+     * @return ${functionName}
+     */
+     @Override
+     public ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField}) {
+         ${ClassName} po = getById(id);
+         return ${ClassName}Convert.INSTANCE.convert(po);
+     }
+
+    /**
+     * 查询${functionName}列表
+     *
+     * @param ${className} ${functionName}
+     * @return ${functionName}集合
+     */
+    @Override
+    public PageVO<${ClassName}> select${ClassName}List(PageQueryVO<${ClassName}QueryVO> ${className}) {
+        Page<${ClassName}> page = new Page<>(param.getCurrentPage(), param.getPageSize());
+        ${ClassName}QueryVO data = param.getData();
+        QueryWrapper<${ClassName}> queryWrapper = new QueryWrapper<>();
+        if (null != data) {
+        #foreach ($column in $columns)
+            #if($column.isQuery == '1')
+            #if($column.queryType == "EQ")
+            if (data.get${column.getCapJavaField()}() != null) {
+                queryWrapper.lambda().eq(${ClassName}::get${column.getCapJavaField()}, data.get${column.getCapJavaField()}());
+            }
+            #end
+            #if($column.queryType == "LIKE")
+            if (data.getColumnId() != null) {
+                queryWrapper.lambda().like(${ClassName}::get${column.getCapJavaField()}, data.get${column.getCapJavaField()}());
+            }
+            #end
+            #end
+        #end
+        }
+        Page<${ClassName}> pageInfo = page(page, queryWrapper);
+        List<${ClassName}VO> vos = ${ClassName}Convert.INSTANCE.convert(pageInfo.getRecords());
+        return new PageVO<>(vos, pageInfo);
+    }
+
+    /**
+     * 新增${functionName}
+     *
+     * @param ${className} ${functionName}
+     */
+     @Override
+     public ${pkColumn.javaType} insert${ClassName}(${ClassName}AddOrUpdateVO ${className}) {
+         ${ClassName} po = ${ClassName}Convert.INSTANCE.convert(${className});
+         save(po);
+         return po.get${pkColumn.getCapJavaField()}();
+     }
+
+    /**
+     * 修改${functionName}
+     *
+     * @param ${className} ${functionName}
+     */
+    @Override
+    public void update${ClassName}(${ClassName}AddOrUpdateVO ${className}) {
+        ${ClassName} po =${ClassName}Convert.INSTANCE.convert(param);
+        updateById(po);
+    }
+
+    /**
+     * 批量删除${functionName}
+     *
+     * @param ${pkColumn.javaField}s 需要删除的${functionName}主键集合
+     * @return 结果
+     */
+    @Override
+    public int delete${ClassName}ByIds(List<${pkColumn.javaType}> ${pkColumn.javaField}s) {
+        return baseMapper.deleteBatchIds(${pkColumn.javaField}s);
+    }
+}
