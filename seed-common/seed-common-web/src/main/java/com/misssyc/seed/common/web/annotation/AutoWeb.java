@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @SpringBootApplication
 @AutoSwagger
-@MapperScan({"com.misssyc.seed.**.mapper"})
+@MapperScan({"com.misssyc.seed.**.dao"})
 @AutoFeignClients
 public @interface AutoWeb {
 }

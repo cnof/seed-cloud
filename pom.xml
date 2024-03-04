@@ -11,7 +11,6 @@
     <modules>
         <module>seed-gateway</module>
         <module>seed-scheduler</module>
-        <module>seed-web</module>
         <module>seed-common</module>
         <module>seed-admin</module>
         <module>seed-api</module>
