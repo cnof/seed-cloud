@@ -15,6 +15,7 @@ import lombok.Data;
 public class ${ClassName}QueryVO {
 #foreach ($column in $columns)
 #if($column.isQuery == '1')
+
     @ApiModelProperty("$column.columnComment")
     private $column.javaType $column.javaField;
 #end

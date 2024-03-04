@@ -1,8 +1,7 @@
 package ${packageName}.mapstruct;
 
-import ${packageName}.domain.${ClassName};
+import ${packageName}.po.${ClassName};
 import ${packageName}.pojo.vo.${ClassName}VO;
-import ${packageName}.pojo.vo.${ClassName}QueryVO;
 import ${packageName}.pojo.vo.${ClassName}AddOrUpdateVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

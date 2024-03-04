@@ -12,9 +12,10 @@ import lombok.Data;
  * @since  ${datetime}
  */
 @Data
-public class ${ClassName}VO {
+public class ${ClassName}AddOrUpdateVO {
 #foreach ($column in $columns)
     #if($column.isInsert == '1' || $column.isEdit == '1')
+
     @ApiModelProperty("$column.columnComment")
     private $column.javaType $column.javaField;
     #end

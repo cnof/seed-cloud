@@ -149,7 +149,7 @@ public class VelocityUtils {
 
         if (template.contains("addOrUpdateVo.java.vm"))
         {
-            fileName = CharSequenceUtil.format("{}/pojo/vo/{}.java", javaPath, className);
+            fileName = CharSequenceUtil.format("{}/pojo/vo/{}AddOrUpdateVO.java", javaPath, className);
         }
         else if (template.contains("controller.java.vm"))
         {
@@ -161,7 +161,7 @@ public class VelocityUtils {
         }
         else if (template.contains("mapper.java.vm"))
         {
-            fileName = CharSequenceUtil.format("{}/mapper/{}Mapper.java", javaPath, className);
+            fileName = CharSequenceUtil.format("{}/dao/{}Mapper.java", javaPath, className);
         }
         else if (template.contains("po.java.vm"))
         {

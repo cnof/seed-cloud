@@ -1,8 +1,8 @@
-package ${packageName}.mapper;
+package ${packageName}.dao;
 
 import org.springframework.stereotype.Repository;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import ${packageName}.domain.${ClassName};
+import ${packageName}.po.${ClassName};
 
 /**
  * ${functionName}Mapper接口

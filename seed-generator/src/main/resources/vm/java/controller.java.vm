@@ -1,18 +1,15 @@
 package ${packageName}.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import com.misssyc.seed.common.core.enums.OperateType;
 import com.misssyc.seed.common.core.web.Result;
 import com.misssyc.seed.common.core.web.ResultHelper;
 import com.misssyc.seed.common.log.annotation.Log;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ${packageName}.pojo.vo.${ClassName}VO;
 import ${packageName}.pojo.vo.${ClassName}QueryVO;
 import ${packageName}.pojo.vo.${ClassName}AddOrUpdateVO;
@@ -41,7 +38,10 @@ public class ${ClassName}Controller {
      * @param ${pkColumn.javaField} ${functionName}主键
      * @return ${functionName}
      */
-    public Result<${ClassName}> select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField}) {
+    @ApiOperation("查询${functionName}")
+    @GetMapping("/{${pkColumn.javaField}}")
+    @SaCheckPermission("${permissionPrefix}:detail")
+    public Result<${ClassName}VO> select${ClassName}ById(@PathVariable ${pkColumn.javaType} ${pkColumn.javaField}) {
         return ResultHelper.ok(${className}Service.select${ClassName}ById(${pkColumn.javaField}));
     }
 
@@ -51,7 +51,10 @@ public class ${ClassName}Controller {
      * @param ${className} ${functionName}
      * @return ${functionName}集合
      */
-    public Result<PageVO<${ClassName}>> select${ClassName}List(PageQueryVO<${ClassName}QueryVO> ${className}) {
+    @ApiOperation("查询${functionName}列表")
+    @GetMapping
+    @SaCheckPermission("${permissionPrefix}:list")
+    public Result<PageVO<${ClassName}VO>> select${ClassName}List(PageQueryVO<${ClassName}QueryVO> ${className}) {
         return ResultHelper.ok(${className}Service.select${ClassName}List(${className}));
     }
 
@@ -60,7 +63,10 @@ public class ${ClassName}Controller {
      *
      * @param ${className} ${functionName}
      */
-    public Result<${pkColumn.javaType}> insert${ClassName}(${ClassName}AddOrUpdateVO ${className}) {
+    @ApiOperation("新增${functionName}")
+    @PostMapping
+    @SaCheckPermission("${permissionPrefix}:insert")
+    public Result<${pkColumn.javaType}> insert${ClassName}(@RequestBody ${ClassName}AddOrUpdateVO ${className}) {
         return ResultHelper.ok(${className}Service.insert${ClassName}(${className}));
     }
 
@@ -69,8 +75,12 @@ public class ${ClassName}Controller {
      *
      * @param ${className} ${functionName}
      */
-    public Result<Void> update${ClassName}(${ClassName}AddOrUpdateVO ${className}) {
-        return ResultHelper.ok(${className}Service.update${ClassName}(${className}));
+    @ApiOperation("修改${functionName}")
+    @PutMapping
+    @SaCheckPermission("${permissionPrefix}:update")
+    public Result<Void> update${ClassName}(@RequestBody ${ClassName}AddOrUpdateVO ${className}) {
+        ${className}Service.update${ClassName}(${className});
+        return ResultHelper.ok();
     }
 
     /**
@@ -79,7 +89,10 @@ public class ${ClassName}Controller {
      * @param ${pkColumn.javaField}s 需要删除的${functionName}主键集合
      * @return 结果
      */
-    public Result<Integer> delete${ClassName}ByIds(List<${pkColumn.javaType}> ${pkColumn.javaField}s) {
-        return ResultHelper.ok(${className}Servicedelete${ClassName}ByIds(${pkColumn.javaField}s));
+    @ApiOperation("修改${functionName}")
+    @DeleteMapping
+    @SaCheckPermission("${permissionPrefix}:delete")
+    public Result<Integer> delete${ClassName}ByIds(@RequestBody List<${pkColumn.javaType}> ${pkColumn.javaField}s) {
+        return ResultHelper.ok(${className}Service.delete${ClassName}ByIds(${pkColumn.javaField}s));
     }
 }

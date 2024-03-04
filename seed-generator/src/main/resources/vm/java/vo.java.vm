@@ -6,14 +6,17 @@ import ${import};
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  *
  * @author ${author}
  * @since  ${datetime}
  */
 @Data
-public class ${ClassName}AddOrUpdateVO {
+public class ${ClassName}VO {
 #foreach ($column in $columns)
+
     @ApiModelProperty("$column.columnComment")
     private $column.javaType $column.javaField;
 #end

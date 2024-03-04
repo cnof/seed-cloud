@@ -1,4 +1,5 @@
 #* @implicitly included *#
+#* @vtlvariable name="permissionPrefix" type="java.lang.String" *#
 #* @vtlvariable name="businessName" type="java.lang.String" *#
 #* @vtlvariable name="pkColumn" type="com.misssyc.seed.generator.po.GenTableColumn" *#
 #* @vtlvariable name="className" type="java.lang.String" *#
