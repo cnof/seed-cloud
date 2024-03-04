@@ -7,9 +7,9 @@ import cn.hutool.core.text.CharSequenceUtil;
  * @author 李生平
  * @since 2024/2/21
  **/
-public class StringUtils {
+public class StringUtils extends CharSequenceUtil {
 
-    public static boolean isEmpty(final CharSequence cs) {
-        return CharSequenceUtil.isEmpty(cs);
+    public static boolean isFalse(final CharSequence cs) {
+        return cs == null || !equals("1", cs);
     }
 }

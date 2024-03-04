@@ -41,6 +41,7 @@
         <lombok.version>1.18.28</lombok.version>
         <hutool.version>5.8.25</hutool.version>
         <velocity.version>2.3</velocity.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
 
         <!-- 打包依赖的版本号       -->
         <spring-boot-maven-plugin.version>3.2.3</spring-boot-maven-plugin.version>
@@ -231,6 +232,18 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
             </dependency>
 
             <dependency>

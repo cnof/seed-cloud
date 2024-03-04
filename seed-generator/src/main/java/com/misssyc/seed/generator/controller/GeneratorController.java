@@ -1,18 +1,20 @@
 package com.misssyc.seed.generator.controller;
 
-import cn.dev33.satoken.annotation.SaCheckLogin;
-import com.baomidou.mybatisplus.generator.FastAutoGenerator;
-import com.baomidou.mybatisplus.generator.config.OutputFile;
-import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
-import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
+import com.misssyc.seed.common.core.enums.OperateType;
+import com.misssyc.seed.common.core.web.Result;
+import com.misssyc.seed.common.core.web.ResultHelper;
+import com.misssyc.seed.common.log.annotation.Log;
+import com.misssyc.seed.generator.po.GenTable;
+import com.misssyc.seed.generator.pojo.dto.GenTableAddDTO;
+import com.misssyc.seed.generator.service.GenTableService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Types;
-import java.util.Collections;
+import java.util.List;
 
 /**
  * @author 李生平
@@ -23,45 +25,16 @@ import java.util.Collections;
 @RequestMapping
 public class GeneratorController {
 
-    @Value("${spring.datasource.druid.url}")
-    private String url;
+    @Autowired
+    private GenTableService genTableService;
 
-    @Value("${spring.datasource.druid.username}")
-    private String username;
-
-    @Value("${spring.datasource.druid.password}")
-    private String password;
-
-    @SaCheckLogin
-    @PostMapping
-    public void generate() {
-        FastAutoGenerator
-                .create(url, username, password)
-                .globalConfig(builder -> builder
-                        .author("")
-                        .enableSwagger()
-                        .outputDir("E:\\public\\public_project\\files\\generator")
-                )
-                .dataSourceConfig(builder -> builder.typeConvertHandler((globalConfig, typeRegistry, metaInfo) -> {
-                    int typeCode = metaInfo.getJdbcType().TYPE_CODE;
-                    if (typeCode == Types.SMALLINT) {
-                        // 自定义类型转换
-                        return DbColumnType.INTEGER;
-                    }
-                    return typeRegistry.getColumnType(metaInfo);
-                }))
-                .packageConfig(builder -> builder
-                        .parent("com.baomidou.mybatisplus.samples.generator")
-                        .moduleName("system")
-                        .pathInfo(Collections.singletonMap(OutputFile.xml, "E:\\public\\public_project\\files\\generator"))
-                )
-                .strategyConfig(builder -> builder
-                        .addInclude("generator_gen_table", "generator_gen_table_column")
-                        .addTablePrefix("generator_")
-                )
-                .templateEngine(new VelocityTemplateEngine())
-
-                .execute();
-        ;
+    @Log(title = "代码生成", operateType = OperateType.IMPORT)
+    @PostMapping("/importTable")
+    public Result<Void> importTableSave(@RequestBody GenTableAddDTO param)
+    {
+        // 查询表信息
+        List<GenTable> tableList = genTableService.selectDbTableListByNames(param.getTableNames());
+        genTableService.importGenTable(tableList, param);
+        return ResultHelper.ok();
     }
 }
