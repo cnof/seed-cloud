@@ -1,8 +1,12 @@
 package com.misssyc.seed.generator.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.misssyc.seed.common.core.vo.PageQueryVO;
+import com.misssyc.seed.common.core.vo.PageVO;
 import com.misssyc.seed.generator.po.GenTable;
-import com.misssyc.seed.generator.pojo.dto.GenTableAddDTO;
+import com.misssyc.seed.generator.pojo.vo.GenTableAddOrUpdateVO;
+import com.misssyc.seed.generator.pojo.vo.GenTableQueryVO;
+import com.misssyc.seed.generator.pojo.vo.GenTableVO;
 
 import java.util.List;
 
@@ -24,13 +28,13 @@ public interface GenTableService extends IService<GenTable> {
      */
     List<GenTable> selectDbTableListByNames(List<String> tableNames);
 
-    /**
-     * 导入表结构
-     *
-     * @param tableList 导入表列表
-     * @param param
-     */
-    void importGenTable(List<GenTable> tableList, GenTableAddDTO param);
+    GenTableVO selectGenTableById(Long id);
 
-    void generateCode(Long tableId);
+    PageVO<GenTableVO> selectGenTableList(PageQueryVO<GenTableQueryVO> param);
+
+    Long insert(GenTableAddOrUpdateVO param);
+
+    void update(GenTableAddOrUpdateVO param);
+
+    int deleteByIds(List<Long> ids);
 }
