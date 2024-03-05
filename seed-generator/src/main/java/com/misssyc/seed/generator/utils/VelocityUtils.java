@@ -1,7 +1,10 @@
 package com.misssyc.seed.generator.utils;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.CharSequenceUtil;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.misssyc.seed.common.core.constants.GenConstants;
 import com.misssyc.seed.generator.po.GenTable;
 import com.misssyc.seed.generator.po.GenTableColumn;
@@ -23,6 +26,8 @@ public class VelocityUtils {
 
     /** mybatis空间路径 */
     private static final String MYBATIS_PATH = "main/resources/mapper";
+
+    private static final String DEFAULT_PARENT_MENU_ID = "3";
 
     /**
      * 设置模板变量信息
@@ -54,6 +59,7 @@ public class VelocityUtils {
         velocityContext.put("permissionPrefix", getPermissionPrefix(moduleName, businessName));
         velocityContext.put("columns", columns);
         velocityContext.put("table", genTable);
+        setMenuVelocityContext(velocityContext, genTable);
 
         return velocityContext;
     }
@@ -124,6 +130,7 @@ public class VelocityUtils {
         templates.add("vm/java/serviceImpl.java.vm");
         templates.add("vm/java/vo.java.vm");
         templates.add("vm/xml/mapper.xml.vm");
+        templates.add("vm/sql/sql.vm");
         return templates;
     }
 
@@ -204,5 +211,30 @@ public class VelocityUtils {
             fileName = CharSequenceUtil.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
         }
         return fileName;
+    }
+
+    public static void setMenuVelocityContext(VelocityContext context, GenTable genTable)
+    {
+        String options = genTable.getOptions();
+        JSONObject paramsObj = JSON.parseObject(options);
+        String parentMenuId = getParentMenuId(paramsObj);
+        context.put("parentMenuId", parentMenuId);
+    }
+
+
+    /**
+     * 获取上级菜单ID字段
+     *
+     * @param paramsObj 生成其他选项
+     * @return 上级菜单ID字段
+     */
+    public static String getParentMenuId(JSONObject paramsObj)
+    {
+        if (CollUtil.isNotEmpty(paramsObj) && paramsObj.containsKey(GenConstants.PARENT_MENU_ID)
+                && StringUtils.isNotEmpty(paramsObj.getString(GenConstants.PARENT_MENU_ID)))
+        {
+            return paramsObj.getString(GenConstants.PARENT_MENU_ID);
+        }
+        return DEFAULT_PARENT_MENU_ID;
     }
 }

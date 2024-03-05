@@ -12,7 +12,7 @@ import java.util.List;
  * ${ClassName}Convert 数组类型转换处理
  *
  * @author ${author}
- * @date ${datetime}
+ * @since  ${datetime}
  */
 @Mapper
 public interface ${ClassName}Convert {

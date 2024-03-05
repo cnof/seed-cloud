@@ -1,0 +1,24 @@
+-- 菜单 SQL
+insert into admin_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('${functionName}管理', '${parentMenuId}', '1', '${businessName}', '${moduleName}/${businessName}/index', 1, 0, 'M', '0', '0', '${permissionPrefix}:list', '#', 'admin', sysdate(), '', null, '${functionName}菜单');
+
+
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+insert into admin_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('${functionName}查询详情', @parentId, '1',  '${businessName}_detail', '', 1, 0, 'B', '0', '0', '${permissionPrefix}:detail',        '#', 'admin', sysdate(), '', null, '');
+
+insert into admin_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('${functionName}查询', @parentId, '2',  '${businessName}_list', '', 1, 0, 'B', '0', '0', '${permissionPrefix}:list',        '#', 'admin', sysdate(), '', null, '');
+
+insert into admin_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('${functionName}新增', @parentId, '3',  '${businessName}_insert', '', 1, 0, 'B', '0', '0', '${permissionPrefix}:add',          '#', 'admin', sysdate(), '', null, '');
+
+insert into admin_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('${functionName}修改', @parentId, '4',  '${businessName}_update', '', 1, 0, 'B', '0', '0', '${permissionPrefix}:edit',         '#', 'admin', sysdate(), '', null, '');
+
+insert into admin_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('${functionName}删除', @parentId, '5',  '${businessName}_delete', '', 1, 0, 'B', '0', '0', '${permissionPrefix}:remove',       '#', 'admin', sysdate(), '', null, '');
+

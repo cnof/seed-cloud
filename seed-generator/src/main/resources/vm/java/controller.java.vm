@@ -66,6 +66,7 @@ public class ${ClassName}Controller {
     @ApiOperation("新增${functionName}")
     @PostMapping
     @SaCheckPermission("${permissionPrefix}:insert")
+    @Log(title = "新增${functionName}", operateType = OperateType.INSERT)
     public Result<${pkColumn.javaType}> insert${ClassName}(@RequestBody ${ClassName}AddOrUpdateVO ${className}) {
         return ResultHelper.ok(${className}Service.insert${ClassName}(${className}));
     }
@@ -78,6 +79,7 @@ public class ${ClassName}Controller {
     @ApiOperation("修改${functionName}")
     @PutMapping
     @SaCheckPermission("${permissionPrefix}:update")
+    @Log(title = "修改${functionName}", operateType = OperateType.UPDATE)
     public Result<Void> update${ClassName}(@RequestBody ${ClassName}AddOrUpdateVO ${className}) {
         ${className}Service.update${ClassName}(${className});
         return ResultHelper.ok();
@@ -89,9 +91,10 @@ public class ${ClassName}Controller {
      * @param ${pkColumn.javaField}s 需要删除的${functionName}主键集合
      * @return 结果
      */
-    @ApiOperation("修改${functionName}")
+    @ApiOperation("批量删除${functionName}")
     @DeleteMapping
     @SaCheckPermission("${permissionPrefix}:delete")
+    @Log(title = "批量删除${functionName}", operateType = OperateType.DELETE)
     public Result<Integer> delete${ClassName}ByIds(@RequestBody List<${pkColumn.javaType}> ${pkColumn.javaField}s) {
         return ResultHelper.ok(${className}Service.delete${ClassName}ByIds(${pkColumn.javaField}s));
     }
