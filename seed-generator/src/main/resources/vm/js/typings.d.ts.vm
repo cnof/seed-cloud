@@ -1,0 +1,23 @@
+declare namespace ${BusinessName}API {
+
+    interface ${BusinessName}Info {
+        #foreach ($column in $columns)
+        ${column.javaField}?: $column.tsType
+        #end
+    }
+
+    interface PageInfo_${BusinessName}Info {
+        pagination?: CommonAPI.Pagination
+        rows?: ${BusinessName}Info[]
+    }
+
+    interface Result {
+        success?: boolean
+        code?: string
+        msg?: string
+    }
+
+    interface Result_PageInfo_${BusinessName}Info_ extends CommonAPI.Result {
+        data: PageInfo_${BusinessName}Info
+    }
+}

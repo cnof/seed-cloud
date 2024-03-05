@@ -3,6 +3,7 @@ package com.misssyc.seed.generator.po;
 import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -98,6 +99,21 @@ public class GenTableColumn implements Serializable {
     public String getCapJavaField()
     {
         return StringUtils.capitalize(javaField);
+    }
+
+    public String getTsType() {
+        switch (javaType) {
+            case "Integer":
+            case "Long":
+            case "Double":
+            case "Float":
+            case "BigDecimal":
+                return "number";
+            case "String":
+            case "Date":
+            default:
+                return "string";
+        }
     }
 
     public boolean isSuperColumn()

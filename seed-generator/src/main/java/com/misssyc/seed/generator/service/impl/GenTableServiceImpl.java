@@ -53,94 +53,13 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable>
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void importGenTable(List<GenTable> tableList, GenTableAddDTO param) {
-        try {
-            for (GenTable table : tableList) {
-                String tableName = table.getTableName();
-                GenUtils.initTable(table, "", param);
-                int row = baseMapper.insert(table);
-                if (row > 0) {
-                    // 保存列信息
-                    List<GenTableColumn> genTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
-                    for (GenTableColumn column : genTableColumns)
-                    {
-                        GenUtils.initColumnField(column, table);
-                        genTableColumnMapper.insert(column);
-                    }
-                }
-            }
-        } catch (Exception err) {
-            throw new SeedRuntimeException("错误：导入失败：" + err.getMessage());
-        }
+
     }
 
     @Override
     public void generateCode(Long tableId) {
-        GenTable table = baseMapper.selectById(tableId);
-        List<GenTableColumn> columns = genTableColumnMapper.selectList(
-                Wrappers.<GenTableColumn>lambdaQuery()
-                        .eq(GenTableColumn::getTableId, table.getTableId())
-        );
-        // 设置主键列信息
-        setPkColumn(table, columns);
 
-        VelocityInitializer.initVelocity();
-
-        VelocityContext context = VelocityUtils.prepareContext(table, columns);
-        // 获取模板列表
-        List<String> templates = VelocityUtils.getTemplateList(table.getTplCategory(), table.getTplWebType());
-
-        for (String template : templates) {
-            // 渲染模板
-            StringWriter sw = new StringWriter();
-            Template tpl = Velocity.getTemplate(template, "UTF-8");
-            tpl.merge(context, sw);
-            try
-            {
-                String path = getGenPath(table, template);
-                FileUtils.writeStringToFile(new File(path), sw.toString(), "UTF-8");
-            }
-            catch (IOException e)
-            {
-                throw new SeedRuntimeException("渲染模板失败，表名：" + table.getTableName());
-            }
-        }
     }
 
-    /**
-     * 设置主键列信息
-     *
-     * @param table 业务表信息
-     */
-    public void setPkColumn(GenTable table, List<GenTableColumn> columns) {
 
-        for (GenTableColumn column : columns)
-        {
-            if (Objects.equals(column.getIsPk(), "1"))
-            {
-                table.setPkColumn(column);
-                break;
-            }
-        }
-        if (ObjectUtil.isNull(table.getPkColumn()))
-        {
-            table.setPkColumn(columns.get(0));
-        }
-    }
-
-    /**
-     * 获取代码生成地址
-     *
-     * @param table 业务表信息
-     * @param template 模板文件路径
-     * @return 生成地址
-     */
-    private static String getGenPath(GenTable table, String template)
-    {
-        String genPath = table.getGenPath();
-        if (StringUtils.equals(genPath, "/"))
-        {
-            return System.getProperty("user.dir") + File.separator + "src" + File.separator + VelocityUtils.getFileName(template, table);
-        }
-        return genPath + File.separator + VelocityUtils.getFileName(template, table);
-    }
 }

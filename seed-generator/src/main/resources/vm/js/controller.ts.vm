@@ -1,0 +1,61 @@
+import { request } from '@umijs/max';
+
+export async function add${BusinessName}(
+    body?: ${BusinessName}API.${BusinessName}Info,
+    options?: { [key: string]: any },
+) {
+    return request<CommonAPI.Result>('/${businessName}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: body,
+        ...(options || {}),
+    });
+}
+
+export async function delete${BusinessName}(
+    body?: ${pkColumn.tsType}[],
+    options?: { [key: string]: any },
+) {
+    return request<CommonAPI.Result>('/${businessName}', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: body,
+        ...(options || {}),
+    });
+}
+
+export async function query${BusinessName}List(
+    params: {
+        /** current */
+        currentPage?: number;
+        /** pageSize */
+        pageSize?: number;
+    },
+    options?: { [key: string]: any },
+) {
+    return request<${BusinessName}API.Result_PageInfo_${BusinessName}Info_>('/${businessName}', {
+        method: 'GET',
+        params: {
+            ...params,
+        },
+        ...(options || {}),
+    });
+}
+
+export async function update${BusinessName}(
+    body?: ${BusinessName}API.${BusinessName}Info,
+    options?: { [key: string]: any },
+) {
+    return request<${BusinessName}API.Result>('/${businessName}', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: body,
+        ...(options || {}),
+    });
+}

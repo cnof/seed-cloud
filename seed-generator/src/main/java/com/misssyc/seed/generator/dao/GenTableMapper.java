@@ -3,6 +3,7 @@ package com.misssyc.seed.generator.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.misssyc.seed.generator.po.GenTable;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @author 
  * @since 2024-03-01
  */
+@Repository
 public interface GenTableMapper extends BaseMapper<GenTable> {
 
     /**

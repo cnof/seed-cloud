@@ -77,20 +77,4 @@ public class GenTableColumnAddOrUpdateVO implements Serializable {
 
     @ApiModelProperty("显示顺序")
     private Integer orderNum;
-
-    @ApiModelProperty("创建者")
-    @TableField(fill = FieldFill.INSERT)
-    private String createBy;
-
-    @ApiModelProperty("创建时间")
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
-
-    @ApiModelProperty("更新者")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private String updateBy;
-
-    @ApiModelProperty("更新时间")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime;
 }

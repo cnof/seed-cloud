@@ -1,4 +1,5 @@
 #* @implicitly included *#
+#* @vtlvariable name="BusinessName" type="java.lang.String" *#
 #* @vtlvariable name="parentMenuId" type="java.lang.String" *#
 #* @vtlvariable name="permissionPrefix" type="java.lang.String" *#
 #* @vtlvariable name="businessName" type="java.lang.String" *#

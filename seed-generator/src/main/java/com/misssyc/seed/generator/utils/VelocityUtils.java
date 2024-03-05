@@ -131,6 +131,8 @@ public class VelocityUtils {
         templates.add("vm/java/vo.java.vm");
         templates.add("vm/xml/mapper.xml.vm");
         templates.add("vm/sql/sql.vm");
+        templates.add("vm/js/typings.d.ts.vm");
+        templates.add("vm/js/controller.ts.vm");
         return templates;
     }
 
@@ -152,7 +154,7 @@ public class VelocityUtils {
 
         String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
         String mybatisPath = MYBATIS_PATH + "/" + moduleName;
-        String vuePath = "vue";
+        String reactPath = "react";
 
         if (template.contains("addOrUpdateVo.java.vm"))
         {
@@ -198,17 +200,21 @@ public class VelocityUtils {
         {
             fileName = businessName + "Menu.sql";
         }
-        else if (template.contains("api.js.vm"))
+        else if (template.contains("controller.ts.vm"))
         {
-            fileName = CharSequenceUtil.format("{}/api/{}/{}.js", vuePath, moduleName, businessName);
+            fileName = CharSequenceUtil.format("{}/api/{}/{}Controller.ts", reactPath, moduleName, businessName);
+        }
+        else if (template.contains("typings.d.ts.vm"))
+        {
+            fileName = CharSequenceUtil.format("{}/api/{}/{}.ts", reactPath, moduleName, businessName);
         }
         else if (template.contains("index.vue.vm"))
         {
-            fileName = CharSequenceUtil.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
+            fileName = CharSequenceUtil.format("{}/views/{}/{}/index.vue", reactPath, moduleName, businessName);
         }
         else if (template.contains("index-tree.vue.vm"))
         {
-            fileName = CharSequenceUtil.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
+            fileName = CharSequenceUtil.format("{}/views/{}/{}/index.vue", reactPath, moduleName, businessName);
         }
         return fileName;
     }
