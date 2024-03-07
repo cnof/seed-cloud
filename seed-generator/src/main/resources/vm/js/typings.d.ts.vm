@@ -2,6 +2,8 @@ declare namespace ${BusinessName}API {
 
     interface ${BusinessName}Info {
         #foreach ($column in $columns)
+
+        // ${column.columnComment}
         ${column.javaField}?: $column.tsType
         #end
     }

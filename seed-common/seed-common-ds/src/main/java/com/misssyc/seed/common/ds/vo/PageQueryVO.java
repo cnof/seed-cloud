@@ -1,4 +1,4 @@
-package com.misssyc.seed.common.core.vo;
+package com.misssyc.seed.common.ds.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

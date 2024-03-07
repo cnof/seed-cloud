@@ -1,4 +1,4 @@
-package com.misssyc.seed.common.core.vo;
+package com.misssyc.seed.common.ds.vo;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiModel;

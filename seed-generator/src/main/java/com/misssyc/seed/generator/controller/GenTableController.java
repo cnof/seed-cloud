@@ -2,8 +2,8 @@ package com.misssyc.seed.generator.controller;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.misssyc.seed.common.core.enums.OperateType;
-import com.misssyc.seed.common.core.vo.PageQueryVO;
-import com.misssyc.seed.common.core.vo.PageVO;
+import com.misssyc.seed.common.ds.vo.PageQueryVO;
+import com.misssyc.seed.common.ds.vo.PageVO;
 import com.misssyc.seed.common.core.web.Result;
 import com.misssyc.seed.common.core.web.ResultHelper;
 import com.misssyc.seed.common.log.annotation.Log;

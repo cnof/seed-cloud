@@ -14,8 +14,8 @@ import ${packageName}.pojo.vo.${ClassName}VO;
 import ${packageName}.pojo.vo.${ClassName}QueryVO;
 import ${packageName}.pojo.vo.${ClassName}AddOrUpdateVO;
 import ${packageName}.service.${ClassName}Service;
-import com.misssyc.seed.common.core.vo.PageVO;
-import com.misssyc.seed.common.core.vo.PageQueryVO;
+import com.misssyc.seed.common.ds.vo.PageVO;
+import com.misssyc.seed.common.ds.vo.PageQueryVO;
 import java.lang.Integer;
 
 /**

@@ -8,9 +8,8 @@ import ${packageName}.pojo.vo.${ClassName}QueryVO;
 import ${packageName}.pojo.vo.${ClassName}AddOrUpdateVO;
 import ${packageName}.service.${ClassName}Service;
 import ${packageName}.mapstruct.${ClassName}Convert;
-import com.misssyc.seed.common.core.vo.PageVO;
-import com.misssyc.seed.common.core.vo.PageQueryVO;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.misssyc.seed.common.ds.vo.PageVO;
+import com.misssyc.seed.common.ds.vo.PageQueryVO;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

@@ -1,8 +1,8 @@
 package com.misssyc.seed.generator.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.misssyc.seed.common.core.vo.PageQueryVO;
-import com.misssyc.seed.common.core.vo.PageVO;
+import com.misssyc.seed.common.ds.vo.PageQueryVO;
+import com.misssyc.seed.common.ds.vo.PageVO;
 import com.misssyc.seed.generator.po.GenTableColumn;
 import com.misssyc.seed.generator.pojo.vo.GenTableColumnAddOrUpdateVO;
 import com.misssyc.seed.generator.pojo.vo.GenTableColumnQueryVO;
