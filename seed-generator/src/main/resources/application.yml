@@ -40,3 +40,9 @@ sa-token:
   token-name: Authorization
   # jwt秘钥
   jwt-secret-key: FWf9gEQtjd2JPeI0
+
+generator:
+  author: 李升平
+  packageName: com.misssyc.seed
+  autoRemovePre: true
+  tablePrefix: admin

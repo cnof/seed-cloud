@@ -4,13 +4,15 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.misssyc.seed.common.core.exception.SeedRuntimeException;
 import com.misssyc.seed.common.core.utils.StringUtils;
+import com.misssyc.seed.generator.component.GeneratorComponent;
 import com.misssyc.seed.generator.dao.GenTableColumnMapper;
 import com.misssyc.seed.generator.dao.GenTableMapper;
+import com.misssyc.seed.generator.mapstruct.GenTableConvert;
 import com.misssyc.seed.generator.po.GenTable;
 import com.misssyc.seed.generator.po.GenTableColumn;
-import com.misssyc.seed.generator.pojo.dto.GenTableAddDTO;
+import com.misssyc.seed.generator.pojo.vo.GenTableQueryVO;
+import com.misssyc.seed.generator.pojo.vo.GenTableVO;
 import com.misssyc.seed.generator.service.GeneratorService;
-import com.misssyc.seed.generator.utils.GenUtils;
 import com.misssyc.seed.generator.utils.VelocityInitializer;
 import com.misssyc.seed.generator.utils.VelocityUtils;
 import lombok.RequiredArgsConstructor;
@@ -40,19 +42,21 @@ public class GeneratorServiceImpl implements GeneratorService {
 
     private final GenTableColumnMapper genTableColumnMapper;
 
+    private final GeneratorComponent generatorComponent;
+
     @Override
-    public void importGenTable(List<GenTable> tableList, GenTableAddDTO param) {
+    public void importGenTable(List<GenTable> tableList) {
         try {
             for (GenTable table : tableList) {
                 String tableName = table.getTableName();
-                GenUtils.initTable(table, "", param);
+                generatorComponent.initTable(table, "");
                 int row = genTableMapper.insert(table);
                 if (row > 0) {
                     // 保存列信息
                     List<GenTableColumn> genTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
                     for (GenTableColumn column : genTableColumns)
                     {
-                        GenUtils.initColumnField(column, table);
+                        generatorComponent.initColumnField(column, table);
                         genTableColumnMapper.insert(column);
                     }
                 }
@@ -93,6 +97,12 @@ public class GeneratorServiceImpl implements GeneratorService {
                 throw new SeedRuntimeException("渲染模板失败，表名：" + table.getTableName());
             }
         }
+    }
+
+    @Override
+    public List<GenTableVO> queryToBeGenTables(GenTableQueryVO param) {
+        List<GenTable> pos = genTableMapper.queryToBeGenTables(null);
+        return GenTableConvert.INSTANCE.convert(pos);
     }
 
     /**

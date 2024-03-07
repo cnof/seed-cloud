@@ -1,41 +1,45 @@
-package com.misssyc.seed.generator.utils;
+package com.misssyc.seed.generator.component;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import com.misssyc.seed.common.core.constants.GenConstants;
 import com.misssyc.seed.common.core.utils.StringUtils;
-import com.misssyc.seed.generator.config.GenConfig;
+import com.misssyc.seed.generator.config.GeneratorProperties;
 import com.misssyc.seed.generator.po.GenTable;
 import com.misssyc.seed.generator.po.GenTableColumn;
-import com.misssyc.seed.generator.pojo.dto.GenTableAddDTO;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RegExUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
 /**
- * 代码生成器 工具类
- * 
- * @author ruoyi
- */
-public class GenUtils
-{
+ * @author 33992
+ * @since 2024/3/7
+ **/
+@Component
+@RequiredArgsConstructor
+public class GeneratorComponent {
+
+    private final GeneratorProperties generatorProperties;
+
     /**
      * 初始化表信息
      */
-    public static void initTable(GenTable genTable, String operName, GenTableAddDTO param)
+    public void initTable(GenTable genTable, String operName)
     {
-        genTable.setClassName(convertClassName(genTable.getTableName(), param));
-        genTable.setPackageName(param.getPackageName());
-        genTable.setModuleName(getModuleName(param.getPackageName()));
+        genTable.setClassName(convertClassName(genTable.getTableName()));
+        genTable.setPackageName(generatorProperties.getPackageName());
+        genTable.setModuleName(getModuleName(generatorProperties.getPackageName()));
         genTable.setBusinessName(getBusinessName(genTable.getTableName()));
         genTable.setFunctionName(replaceText(genTable.getTableComment()));
-        genTable.setFunctionAuthor(param.getAuthor());
+        genTable.setFunctionAuthor(generatorProperties.getAuthor());
         genTable.setCreateBy(operName);
     }
 
     /**
      * 初始化列属性字段
      */
-    public static void initColumnField(GenTableColumn column, GenTable table)
+    public void initColumnField(GenTableColumn column, GenTable table)
     {
         String dataType = getDbType(column.getColumnType());
         String columnName = column.getColumnName();
@@ -135,23 +139,23 @@ public class GenUtils
 
     /**
      * 校验数组是否包含指定值
-     * 
+     *
      * @param arr 数组
      * @param targetValue 值
      * @return 是否包含
      */
-    public static boolean arraysContains(String[] arr, String targetValue)
+    public boolean arraysContains(String[] arr, String targetValue)
     {
         return Arrays.asList(arr).contains(targetValue);
     }
 
     /**
      * 获取模块名
-     * 
+     *
      * @param packageName 包名
      * @return 模块名
      */
-    public static String getModuleName(String packageName)
+    public String getModuleName(String packageName)
     {
         int lastIndex = packageName.lastIndexOf(".");
         int nameLength = packageName.length();
@@ -160,11 +164,11 @@ public class GenUtils
 
     /**
      * 获取业务名
-     * 
+     *
      * @param tableName 表名
      * @return 业务名
      */
-    public static String getBusinessName(String tableName)
+    public String getBusinessName(String tableName)
     {
         int lastIndex = tableName.lastIndexOf("_");
         int nameLength = tableName.length();
@@ -175,13 +179,12 @@ public class GenUtils
      * 表名转换成Java类名
      *
      * @param tableName 表名称
-     * @param param
      * @return 类名
      */
-    public static String convertClassName(String tableName, GenTableAddDTO param)
+    public String convertClassName(String tableName)
     {
-        boolean autoRemovePre = param.isAutoRemovePre();
-        String tablePrefix = param.getTablePrefix();
+        boolean autoRemovePre = generatorProperties.isAutoRemovePre();
+        String tablePrefix = generatorProperties.getTablePrefix();
         if (autoRemovePre && StringUtils.isNotEmpty(tablePrefix))
         {
             String[] searchList = StringUtils.splitToArray(tablePrefix, ",");
@@ -192,11 +195,11 @@ public class GenUtils
 
     /**
      * 批量替换前缀
-     * 
+     *
      * @param replacement 替换值
      * @param searchList 替换列表
      */
-    public static String replaceFirst(String replacement, String[] searchList)
+    public String replaceFirst(String replacement, String[] searchList)
     {
         String text = replacement;
         for (String searchString : searchList)
@@ -212,22 +215,22 @@ public class GenUtils
 
     /**
      * 关键字替换
-     * 
+     *
      * @param text 需要被替换的名字
      * @return 替换后的名字
      */
-    public static String replaceText(String text)
+    public String replaceText(String text)
     {
         return RegExUtils.replaceAll(text, "(?:表|若依)", "");
     }
 
     /**
      * 获取数据库类型字段
-     * 
+     *
      * @param columnType 列类型
      * @return 截取后的列类型
      */
-    public static String getDbType(String columnType)
+    public String getDbType(String columnType)
     {
         if (StringUtils.indexOf(columnType, '(') > 0)
         {
@@ -241,11 +244,11 @@ public class GenUtils
 
     /**
      * 获取字段长度
-     * 
+     *
      * @param columnType 列类型
      * @return 截取后的列类型
      */
-    public static Integer getColumnLength(String columnType)
+    public Integer getColumnLength(String columnType)
     {
         if (StringUtils.indexOf(columnType, '(') > 0)
         {

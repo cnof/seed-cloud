@@ -5,16 +5,14 @@ import com.misssyc.seed.common.core.web.Result;
 import com.misssyc.seed.common.core.web.ResultHelper;
 import com.misssyc.seed.common.log.annotation.Log;
 import com.misssyc.seed.generator.po.GenTable;
-import com.misssyc.seed.generator.pojo.dto.GenTableAddDTO;
+import com.misssyc.seed.generator.pojo.vo.GenTableQueryVO;
+import com.misssyc.seed.generator.pojo.vo.GenTableVO;
 import com.misssyc.seed.generator.service.GenTableService;
 import com.misssyc.seed.generator.service.GeneratorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,10 +33,10 @@ public class GeneratorController {
     @ApiOperation("根据表名称生成表字段信息")
     @Log(title = "根据表名称生成表字段信息", operateType = OperateType.IMPORT)
     @PostMapping("/import-table")
-    public Result<Void> importTableSave(@RequestBody GenTableAddDTO param) {
+    public Result<Void> importTableSave(@RequestBody List<String> tableNames) {
         // 查询表信息
-        List<GenTable> tableList = genTableService.selectDbTableListByNames(param.getTableNames());
-        generatorService.importGenTable(tableList, param);
+        List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
+        generatorService.importGenTable(tableList);
         return ResultHelper.ok();
     }
 
@@ -48,5 +46,11 @@ public class GeneratorController {
     public Result<Void> generateCode(Long tableId) {
         generatorService.generateCode(tableId);
         return ResultHelper.ok();
+    }
+
+    @ApiOperation("查询未被生成代码的表信息")
+    @GetMapping("/unused/tables")
+    public Result<List<GenTableVO>> queryToBeGenTables(GenTableQueryVO param) {
+        return ResultHelper.ok(generatorService.queryToBeGenTables(param));
     }
 }

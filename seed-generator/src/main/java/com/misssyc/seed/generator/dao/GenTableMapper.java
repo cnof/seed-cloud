@@ -25,4 +25,9 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * @return 数据库表集合
      */
     List<GenTable> selectDbTableListByNames(@Param("tableNames") List<String> tableNames);
+
+    /**
+     * 查询未生成过代码的数据库表信息
+     */
+    List<GenTable> queryToBeGenTables(GenTable genTable);
 }

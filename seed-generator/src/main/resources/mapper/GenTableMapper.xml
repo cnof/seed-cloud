@@ -4,10 +4,16 @@
 
     <select id="selectDbTableListByNames" resultType="com.misssyc.seed.generator.po.GenTable">
         select table_name, table_comment, create_time, update_time from information_schema.tables
-        where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'gen_%' and table_schema = (select database())
+        where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'generator_%' and table_schema = (select database())
         and table_name in
         <foreach collection="tableNames" item="name" open="(" separator="," close=")">
             #{name}
         </foreach>
+    </select>
+    <select id="queryToBeGenTables" resultType="com.misssyc.seed.generator.po.GenTable">
+        select table_name, table_comment, create_time, update_time from information_schema.tables
+        where table_schema = (select database())
+          AND table_name NOT LIKE 'generator_%'
+          AND table_name NOT IN (select table_name from generator_gen_table)
     </select>
 </mapper>
