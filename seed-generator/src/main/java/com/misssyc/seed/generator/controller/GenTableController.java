@@ -38,9 +38,9 @@ public class GenTableController {
     }
 
     @ApiOperation("查询表信息列表")
-    @GetMapping
+    @PostMapping("/list")
     @SaCheckPermission("generator:gen-table:list")
-    public Result<PageVO<GenTableVO>> selectGenTableList(PageQueryVO<GenTableQueryVO> genTable) {
+    public Result<PageVO<GenTableVO>> selectGenTableList(@RequestBody PageQueryVO<GenTableQueryVO> genTable) {
         return ResultHelper.ok(genTableService.selectGenTableList(genTable));
     }
 

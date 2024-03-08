@@ -29,4 +29,6 @@ public interface GenTableColumnService extends IService<GenTableColumn> {
     void update(GenTableColumnAddOrUpdateVO param);
 
     int deleteByIds(List<Long> ids);
+
+    List<GenTableColumnVO> selectGenTableColumnByTableId(Long tableId);
 }

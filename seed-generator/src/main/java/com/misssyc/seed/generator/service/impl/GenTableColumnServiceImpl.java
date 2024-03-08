@@ -1,5 +1,6 @@
 package com.misssyc.seed.generator.service.impl;
 
+import com.alibaba.cloud.nacos.refresh.NacosRefreshHistory;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -41,6 +42,9 @@ public class GenTableColumnServiceImpl extends ServiceImpl<GenTableColumnMapper,
         GenTableColumnQueryVO data = param.getData();
         QueryWrapper<GenTableColumn> queryWrapper = new QueryWrapper<>();
         if (null != data) {
+            if (data.getTableId() != null) {
+                queryWrapper.lambda().eq(GenTableColumn::getTableId, data.getTableId());
+            }
             if (data.getColumnId() != null) {
                 queryWrapper.lambda().eq(GenTableColumn::getColumnId, data.getColumnId());
             }
@@ -70,5 +74,13 @@ public class GenTableColumnServiceImpl extends ServiceImpl<GenTableColumnMapper,
     @Transactional
     public int deleteByIds(List<Long> ids) {
         return baseMapper.deleteBatchIds(ids);
+    }
+
+    @Override
+    public List<GenTableColumnVO> selectGenTableColumnByTableId(Long tableId) {
+        QueryWrapper<GenTableColumn> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(GenTableColumn::getTableId, tableId);
+        List<GenTableColumn> pos = list(queryWrapper);
+        return GenTableColumnConvert.INSTANCE.convert(pos);
     }
 }

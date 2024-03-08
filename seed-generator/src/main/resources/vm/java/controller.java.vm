@@ -52,9 +52,9 @@ public class ${ClassName}Controller {
      * @return ${functionName}集合
      */
     @ApiOperation("查询${functionName}列表")
-    @GetMapping
+    @PostMapping("/list")
     @SaCheckPermission("${permissionPrefix}:list")
-    public Result<PageVO<${ClassName}VO>> select${ClassName}List(PageQueryVO<${ClassName}QueryVO> ${className}) {
+    public Result<PageVO<${ClassName}VO>> select${ClassName}List(@RequestBody PageQueryVO<${ClassName}QueryVO> ${className}) {
         return ResultHelper.ok(${className}Service.select${ClassName}List(${className}));
     }
 
