@@ -42,6 +42,8 @@
         <hutool.version>5.8.25</hutool.version>
         <velocity.version>2.3</velocity.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <camunda.spring-boot.version>7.19.0</camunda.spring-boot.version>
+        <minio.version>8.4.3</minio.version>
 
         <!-- 打包依赖的版本号       -->
         <spring-boot-maven-plugin.version>3.2.3</spring-boot-maven-plugin.version>
@@ -244,6 +246,29 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+
+            <!--  工作流 -->
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter</artifactId>
+                <version>${camunda.spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+                <version>${camunda.spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+                <version>${camunda.spring-boot.version}</version>
             </dependency>
 
             <dependency>
